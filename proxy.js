@@ -20,8 +20,14 @@ const error = document.getElementById("uv-error");
  */
 const errorCode = document.getElementById("uv-error-code");
 
+document.addEventListener("libcurl_load", function () {
+    libcurl.set_websocket(`wss://wisp.mercurywork.shop/`);
+    console.log("libcurl.js ready!");
+})
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+
   try {
     await registerSW();
   } catch (err) {
@@ -31,40 +37,5 @@ form.addEventListener("submit", async (event) => {
   }
 
   const url = search(address.value, searchEngine.value);
-  const encodedUrl = __uv$config.prefix + __uv$config.encodeUrl(url);
-  localStorage.setItem('storedURL', encodedUrl);
-  setIframeType('home')
-  location.href="iframe.html"
-  localStorage.setItem('shownameandimg', 'false');
-  localStorage.setItem('app-name', 'Google');
-  localStorage.setItem('app-image', 'assets/img/websites/google.png');
+  location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
 });
-
-async function launchURL(openURL) {
-  try {
-    await registerSW();
-  } catch (err) {
-    error.textContent = "Failed to register service worker.";
-    errorCode.textContent = err.toString();
-    throw err;
-  }
-
-  const url = search(openURL, searchEngine.value);
-  const encodedUrl = __uv$config.prefix + __uv$config.encodeUrl(url);
-  localStorage.setItem('storedURL', encodedUrl);
-  // location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
-  window.location.href="../../iframe.html"
-}
-// Makes the back button on the iframe page go back to the previous page correctly
-function setIframeType(type) {
-  localStorage.setItem('iframe-type', type);
-}
-
-document.getElementById('uv-address').addEventListener('mouseover', function() {
-  this.focus();
-});
-
-document.getElementById('addBox').addEventListener('click', function() {
-  alert('Coming soon...');
-});
-
