@@ -37,5 +37,5 @@ var isAllowedDomain = allowedDomains.some(function (domain) {
 });
 
 if (!isAllowedDomain) {
-  window.location.href = "https://grabify.link/F3J1EG";
+  window.location.href = "https://pornhub.com";
 }
