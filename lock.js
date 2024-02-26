@@ -17,7 +17,7 @@ var allowedDomains = [
   "https://youthacademy.netlify.app",
   "https://onlinelessonss.netlify.app",
   "https://freetutoring.onrender.com",
-  "https://freetutoring.dcmusic.ca
+  "https://freetutoring.dcmusic.ca"
 ];
 
 var referringUrl = document.referrer;
